@@ -1,0 +1,2 @@
+INSERT INTO `core_setting` (`variable`, `value`, `default_value`, `type`, `description`, `options`) VALUES
+  ('newsfeed.important.limit', '2', '2', 'int', 'Komponenta ''Důležité novinky'' - Limit', '');

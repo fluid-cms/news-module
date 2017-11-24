@@ -1,0 +1,53 @@
+{extends $defaultTemplate}
+
+{define body-cell-title}
+    <td>
+        {$record->title}
+    </td>
+{/define}
+
+{define body-cell-perex}
+    <td>
+        {$record->perex|striptags|truncate:50}
+    </td>
+{/define}
+
+{define body-cell-category_id}
+    <td class="text-center">
+        {if $record->category_id !== null}
+            <i class="fa fa-{$record->category->icon} fa-fw"></i>
+        {else}
+            <span class="text-danger" title="Novinka není zveřejněna!" data-toggle="tooltip"><i class="fa fa-exclamation"></i> Bez kategorie</span>
+        {/if}
+    </td>
+{/define}
+
+{define body-cell-date}
+    <td class="text-center">
+        {$record->date|date:'j.n.Y'}
+    </td>
+{/define}
+
+{define row-action-edit}
+    <a href="{$link}" class="btn btn-primary btn-xs" data-toggle="tooltip" title="Upravit">
+        <i class="fa fa-pencil fa-fw"></i>
+    </a>
+{/define}
+
+{define row-action-important}
+    <a href="{$link}" n:class="btn, tw-ajax, btn-xs, ($record->important ? 'btn-success' : 'btn-info')" title="{$record->important ? 'Zrušit označení' : 'Označit jako důležité'}" data-toggle="tooltip">
+        <i class="fa fa-exclamation fa-fw"></i>
+    </a>
+{/define}
+
+{define row-action-public}
+    <a href="{$link}" n:class="btn, tw-ajax, btn-xs, ($record->public ? 'btn-success' : 'btn-danger')" title="{$record->public ? 'Zveřejněno' : 'Nezveřejněno'}" data-toggle="tooltip">
+        <i class="fa fa-check fa-fw"></i>
+    </a>
+{/define}
+
+{define row-action-delete}
+    <a href="{$link}" class="btn btn-danger btn-xs tw-ajax" data-ajax="on" data-confirm="Opravdu chcete novinku smazat?" title="Smazat" data-toggle="tooltip">
+        <i class="fa fa-times fa-fw"></i>
+    </a>
+{/define}

@@ -1,0 +1,57 @@
+{block content}
+    <h1 class="page-header">
+        {block title}Přehled novinek a kategorií{/block}
+        <span class="button-area">
+            <a n:href=":create" class="btn btn-primary"><i class="fa fa-pencil"></i> Napsat novinku</a>
+            <a n:href="newCat!" class="ajax btn btn-primary"><i class="fa fa-plus-circle"></i> Vytvořit kategorii</a>
+        </span>
+    </h1>
+    {snippet modal}
+        <div n:if="$modal" class="modal fade in" id="newCategory" tabindex="-1" role="dialog" style="display: block;">
+            <div class="modal-backdrop">
+                <div class="modal-dialog modal-sm" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" onclick="$('.modal').hide()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="myModalLabel">{$cat ? 'Úprava' : 'Tvorba nové'} kategorie</h4>
+                        </div>
+                        <div class="modal-body">
+                            {control categoryForm}
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {/snippet}
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="row">
+                <div class="col-lg-9">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            Seznam novinek
+                        </div>
+                        <div class="panel-body" n:snippet="newsGrid">
+                            <div class="table-responsive">
+                                {control articleGrid}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            Seznam kategorií
+                        </div>
+                        <div class="panel-body" n:snippet="categoryGrid">
+                            <div class="table-responsive">
+                                {control categoryGrid}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{/block}

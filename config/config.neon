@@ -1,0 +1,51 @@
+parameters:
+    controls:
+        feed:
+            class: Grapesc\GrapeFluid\NewsFeedModule\Control\NewsFeedControlFactory
+            desc: 'Slouží pro výpis Rychlých novinek'
+            params:
+                limit: [int, 'Limit posledních novinek (Větší než 0)']
+                columns: [int, 'Do kolika sloupců se novinky vypíšou (Doporučeno - 1, 2, 3, 4, 6)']
+        important:
+            class: Grapesc\GrapeFluid\NewsFeedModule\Control\ImportantFeedControlFactory
+            desc: 'Slouží pro výpis novinek označených jako Důležité'
+            params:
+                limit: [int, 'Limit posledních novinek (Větší než 0)']
+
+    translator:
+        locales:
+            - %moduleDir%/NewsFeedModule/config/Locale/cs.neon
+
+    backend:
+        auth:
+            newsfeed: 'newsfeed'
+        menu:
+            Novinky:
+                order: 4
+                icon: 'newspaper-o'
+                auth: '%backend.auth.newsfeed%'
+                selected:
+                    - ':Admin:NewsFeed:edit'
+                submenu:
+                    Přehled novinek:
+                        icon: 'list-alt'
+                        link: ':Admin:NewsFeed:default'
+                    Napsat novinku:
+                        icon: 'pencil'
+                        link: ':Admin:NewsFeed:create'
+
+
+services:
+    - Grapesc\GrapeFluid\NewsFeedModule\Model\CategoryModel
+    - Grapesc\GrapeFluid\NewsFeedModule\Model\ArticleModel
+    - Grapesc\GrapeFluid\NewsFeedModule\CategoryForm
+    - Grapesc\GrapeFluid\NewsFeedModule\ArticleForm
+
+assets:
+    salvattore:
+#        Pokud chcete mit co nejmensi page-load, pridejte toto do sveho PROJEKTOVEHO config.neon-u (popr. upravte limity dle sveho)
+#        limit:
+#            - ':Content:Content.*'
+#            - ':Core:Error.*'
+        js:
+            - 'https://cdnjs.cloudflare.com/ajax/libs/salvattore/1.0.9/salvattore.min.js'

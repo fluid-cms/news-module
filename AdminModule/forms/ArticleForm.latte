@@ -1,0 +1,19 @@
+{extends $fluidForm}
+
+{define form-container}
+    <div class="col-lg-4">
+        <br />
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                Ostatní nastavení
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    {foreach $controls as $name => $container}
+                        {include #form-control, (expand) ['name' => $name, 'control' => $container]}
+                    {/foreach}
+                </div>
+            </div>
+        </div>
+    </div>
+{/define}

@@ -1,0 +1,19 @@
+{extends $defaultTemplate}
+
+{define body-cell-name}
+    <td>
+        <i class="fa fa-{$record->icon} fa-fw"></i> {$record->name}
+    </td>
+{/define}
+
+{define row-action-edit}
+    <a href="{$link}" class="btn btn-primary btn-xs tw-ajax" data-toggle="tooltip" title="Upravit">
+        <i class="fa fa-pencil"></i>
+    </a>
+{/define}
+
+{define row-action-delete}
+    <a href="{$link}" class="btn btn-danger btn-xs tw-ajax" data-ajax="on" data-confirm="Opravdu chcete kategorii smazat?" data-toggle="tooltip" title="Smazat">
+        <i class="fa fa-times"></i>
+    </a>
+{/define}
