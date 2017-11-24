@@ -14,7 +14,7 @@ parameters:
 
     translator:
         locales:
-            - %moduleDir%/NewsFeedModule/config/Locale/cs.neon
+            - %moduleDir%/NewsModule/config/Locale/cs.neon
 
     backend:
         auth:

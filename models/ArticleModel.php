@@ -8,6 +8,13 @@ use Nette\Database\Table\Selection;
 
 class ArticleModel extends BaseModel
 {
+
+	/** {@inheritdoc} */
+	public function getTableName()
+	{
+		return "newsfeed_article";
+	}
+
 	
 	/**
 	 * @return Selection

@@ -1,6 +1,6 @@
 <?php
 
-namespace Grapesc\GrapeFluid\Module\NewsFeed;
+namespace Grapesc\GrapeFluid\Module\News;
 
 use Grapesc\GrapeFluid\BaseModule;
 
@@ -8,7 +8,7 @@ use Grapesc\GrapeFluid\BaseModule;
 /**
  * @author Kulíšek Patrik <kulisek@grapesc.cz>
  */
-class NewsFeedModule extends BaseModule
+class NewsModule extends BaseModule
 {
 
 	protected $parents = [
