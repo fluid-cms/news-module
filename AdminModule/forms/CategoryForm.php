@@ -15,7 +15,7 @@ class CategoryForm extends FluidForm
 	public $model;
 
 
-	protected function build(Form $form)
+	protected function build(Form $form): void
 	{
 		$form->addHidden("id");
 
@@ -23,17 +23,10 @@ class CategoryForm extends FluidForm
 			->setRequired("Musíte vyplnit název kategorie")
 			->setAttribute("cols", 12)
 			->addRule(Form::MAX_LENGTH, "Maximální velikost je %s znaků", 25);
-
-		$form->addSelect("icon", "Ikona")
-			->setAttribute("buttons", true)
-			->setRequired("Musíte vybrat ikonku")
-			->setItems([
-				"television", "plug", "building", "facebook-official", "smile-o", "pencil", "check", "times"
-			], false);
 	}
 
 
-	protected function submit(Control $control, Form $form)
+	protected function submit(Control $control, Form $form): void
 	{
 		$values = $form->getValues(true);
 		$presenter = $form->getPresenter();

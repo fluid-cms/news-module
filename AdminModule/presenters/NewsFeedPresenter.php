@@ -32,13 +32,13 @@ class NewsFeedPresenter extends BasePresenter
 	public $modal = null;
 
 
-	public function renderDefault()
+	public function renderDefault(): void
 	{
 		$this->template->modal = ($this->modal === null ? false : $this->modal);
 	}
 
 
-	public function renderEdit($id = null)
+	public function renderEdit(int $id = null): void
 	{
 		if ($id != null && $art = $this->article->getItem($id)) {
 			/** @var FluidFormControl $control */
@@ -57,7 +57,7 @@ class NewsFeedPresenter extends BasePresenter
 	}
 
 
-	public function handleNewCat()
+	public function handleNewCat(): void
 	{
 		/** @var FluidFormControl $control */
 		$control = $this->getComponent("categoryForm");

@@ -15,7 +15,7 @@
 {define body-cell-category_id}
     <td class="text-center">
         {if $record->category_id !== null}
-            <i class="fa fa-{$record->category->icon} fa-fw"></i>
+            {$record->category->name}
         {else}
             <span class="text-danger" title="Novinka není zveřejněna!" data-toggle="tooltip"><i class="fa fa-exclamation"></i> Bez kategorie</span>
         {/if}

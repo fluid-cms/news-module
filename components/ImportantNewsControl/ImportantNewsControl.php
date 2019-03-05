@@ -8,11 +8,11 @@ use Grapesc\GrapeFluid\NewsFeedModule\Model\ArticleModel;
 
 
 /**
- * Class ImportantFeedControl
+ * Class ImportantNewsControl
  * @package Grapesc\GrapeFluid\NewsFeedModule\Control
- * @usage: {magicControl feed, ['uid', 'int limit']}
+ * @usage: {magicControl importantNews, ['uid', 'int limit']}
  */
-class ImportantFeedControl extends BaseMagicTemplateControl
+class ImportantNewsControl extends BaseMagicTemplateControl
 {
 
 	/** @var ArticleModel @inject */
@@ -27,10 +27,7 @@ class ImportantFeedControl extends BaseMagicTemplateControl
 	protected $defaultTemplateFilename = __DIR__ . '/important.latte';
 
 
-	/**
-	 * @param array $params
-	 */
-	public function setParams(array $params = [])
+	public function setParams(array $params = []): void
 	{
 		$this->limit = $this->setting->getVal("newsfeed.important.limit");
 
@@ -40,9 +37,9 @@ class ImportantFeedControl extends BaseMagicTemplateControl
 	}
 
 
-	public function render()
+	public function render(): void
 	{
-		$this->template->arts = $this->articles->getImportantArticles()->order("date DESC")->limit($this->limit);
+		$this->template->articles = $this->articles->getImportantArticles($this->limit);
 		$this->template->render();
 	}
 

@@ -3,34 +3,24 @@
 namespace Grapesc\GrapeFluid\NewsFeedModule\Model;
 
 use Grapesc\GrapeFluid\Model\BaseModel;
-use Nette\Database\Table\Selection;
 
 
 class ArticleModel extends BaseModel
 {
 
-	/** {@inheritdoc} */
-	public function getTableName()
+	public function getTableName(): string
 	{
 		return "newsfeed_article";
 	}
 
-	
-	/**
-	 * @return Selection
-	 */
-	public function getPublicArticles()
+	public function getPublicArticles(int $limit = 1): array
 	{
-		return $this->getTableSelection()->where("public", 1)->where("category_id NOT ?", null);
+		return $this->getTableSelection()->where("public", 1)->where("category_id NOT ?", null)->order("date DESC")->limit($limit)->fetchAll();
 	}
 
-
-	/**
-	 * @return Selection
-	 */
-	public function getImportantArticles()
+	public function getImportantArticles(int $limit = 1): array
 	{
-		return $this->getTableSelection()->where("important", 1);
+		return $this->getTableSelection()->where("important", 1)->order("date DESC")->limit($limit)->fetchAll();
 	}
 
 }

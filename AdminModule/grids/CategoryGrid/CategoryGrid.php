@@ -10,7 +10,7 @@ use Nette\Database\Table\ActiveRow;
 class CategoryGrid extends FluidGrid
 {
 
-	protected function build()
+	protected function build(): void
 	{
 		$this->skipColumns(["name", "icon"]);
 		$this->addColumn("name", "Kategorie")->setSortable();
@@ -21,7 +21,7 @@ class CategoryGrid extends FluidGrid
 	}
 
 
-	public function deleteCat(ActiveRow $record)
+	public function deleteCat(ActiveRow $record): void
 	{
 		$this->model->delete($record->id);
 		$p = $this->getPresenter();
@@ -31,7 +31,7 @@ class CategoryGrid extends FluidGrid
 	}
 
 
-	public function editCat(ActiveRow $record = null)
+	public function editCat(ActiveRow $record = null): void
 	{
 		/** @var FluidFormControl $control */
 		$presenter = $this->getPresenter();

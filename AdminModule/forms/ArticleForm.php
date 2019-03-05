@@ -19,7 +19,7 @@ class ArticleForm extends FluidForm
 	public $model;
 
 
-	protected function build(Form $form)
+	protected function build(Form $form): void
 	{
 		$form->addHidden("id");
 
@@ -31,7 +31,7 @@ class ArticleForm extends FluidForm
 		$form->addSelect("category_id", "Kategorie")
 			->setPrompt('-- vyberte --')
 			->setAttribute("cols", 4)
-			->setItems($this->category->getAsSelectBoxItems())
+			->setItems($this->category->getForSelectBox())
 			->setRequired(true);
 
 		$form->addTextArea("perex", "Obsah (před Více)")
@@ -53,7 +53,7 @@ class ArticleForm extends FluidForm
 	}
 
 
-	protected function submit(Control $control, Form $form)
+	protected function submit(Control $control, Form $form): void
 	{
 		$values    = $form->getValues(true);
 		$presenter = $form->getPresenter();

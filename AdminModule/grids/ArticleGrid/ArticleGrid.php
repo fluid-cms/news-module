@@ -5,6 +5,7 @@ namespace Grapesc\GrapeFluid\NewsFeedModule\Grid;
 use Grapesc\GrapeFluid\FluidGrid;
 use Grapesc\GrapeFluid\NewsFeedModule\Model\CategoryModel;
 use Nette\Database\Table\ActiveRow;
+use Nette\Forms\Container;
 use TwiGrid\Components\Column;
 
 
@@ -15,7 +16,7 @@ class ArticleGrid extends FluidGrid
 	public $categoryModel;
 
 
-	protected function build()
+	protected function build(): void
 	{
 		$this->skipColumns(["content", "public", "important"]);
 		$this->setDefaultOrderBy("date", Column::DESC);
@@ -23,13 +24,13 @@ class ArticleGrid extends FluidGrid
 		$this->setFilterableColumns(['title', 'perex', 'category_id']);
 		$this->setItemsPerPage(15);
 
-		$this->addRowAction("edit", "Upravit", function(ActiveRow $record) {
+		$this->addRowAction("edit", "Upravit", function (ActiveRow $record) {
 			$this->getPresenter()->redirect(":Admin:NewsFeed:edit", ["id" => $record->id]);
 		});
-		$this->addRowAction("important", "Připíchnout", function(ActiveRow $record) {
+		$this->addRowAction("important", "Připíchnout", function (ActiveRow $record) {
 			$this->model->update(["important" => !$record->important], $record->id);
 		});
-		$this->addRowAction("public", "Zveřejnit", function(ActiveRow $record) {
+		$this->addRowAction("public", "Zveřejnit", function (ActiveRow $record) {
 			$this->model->update(["public" => !$record->public], $record->id);
 		});
 		$this->addRowAction("delete", "Smazat", function (ActiveRow $record) {
@@ -41,13 +42,10 @@ class ArticleGrid extends FluidGrid
 	}
 
 
-	/**
-	 * @return \Nette\Forms\Container
-	 */
-	protected function getFilterContainer()
+	protected function getFilterContainer(): Container
 	{
 		$container = parent::getFilterContainer();
-		$container->addSelect('category_id', 'Kategorie', $this->categoryModel->getAsSelectBoxItems());
+		$container->addSelect('category_id', 'Kategorie', $this->categoryModel->getForSelectBox());
 
 		return $container;
 	}

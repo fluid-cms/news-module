@@ -8,19 +8,12 @@ use Grapesc\GrapeFluid\Model\BaseModel;
 class CategoryModel extends BaseModel
 {
 
-	/** {@inheritdoc} */
-	public function getTableName()
+	public function getTableName(): string
 	{
 		return "newsfeed_category";
 	}
 
-
-	/**
-	 * Vrátí seznam kategorií použitelných pro SelectBox (["id" => "name"])
-	 *
-	 * @return array
-	 */
-	public function getAsSelectBoxItems()
+	public function getForSelectBox(): array
 	{
 		$select = [];
 		foreach ($this->getTableSelection() as $id => $value) {
