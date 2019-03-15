@@ -25,16 +25,22 @@ class ArticleForm extends FluidForm
 
 		$form->addText("title", "Titulek")
 			->setRequired("Musíte vyplnit titulek")
-			->setAttribute("cols", 8)
+			->setAttribute("cols", 6)
 			->addRule(Form::MAX_LENGTH, "Maximální délka titulku je %s znaků", 100);
 
 		$categories = $this->category->getForSelectBox();
 		$form->addSelect("category_id", "Kategorie")
 			->setPrompt('-- vyberte --')
-			->setAttribute("cols", 4)
+			->setAttribute("cols", 3)
 			->setItems($categories)
 			->setDefaultValue(count($categories) == 1 ? key($categories) : null)
 			->setRequired(true);
+
+		$form->addText("date", "Datum")
+			->setDefaultValue(date("Y-m-d"))
+			->setAttribute("cols", 3)
+			->setAttribute("class", "form-control dpicker")
+			->setRequired("Musíte zadat datum");
 
 		$form->addTextArea("perex", "Obsah (před Více)")
 			->setAttribute("cols", 6)
