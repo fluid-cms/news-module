@@ -28,10 +28,12 @@ class ArticleForm extends FluidForm
 			->setAttribute("cols", 8)
 			->addRule(Form::MAX_LENGTH, "Maximální délka titulku je %s znaků", 100);
 
+		$categories = $this->category->getForSelectBox();
 		$form->addSelect("category_id", "Kategorie")
 			->setPrompt('-- vyberte --')
 			->setAttribute("cols", 4)
-			->setItems($this->category->getForSelectBox())
+			->setItems($categories)
+			->setDefaultValue(count($categories) == 1 ? key($categories) : null)
 			->setRequired(true);
 
 		$form->addTextArea("perex", "Obsah (před Více)")
