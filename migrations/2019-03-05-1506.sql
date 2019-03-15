@@ -1,2 +1,2 @@
 ALTER TABLE `newsfeed_category` DROP `icon`;
-DELETE FROM `core_setting` WHERE `variable` LIKE '%newsfeed.control%';
+DELETE FROM `core_setting` WHERE `variable` LIKE '%newsfeed%';

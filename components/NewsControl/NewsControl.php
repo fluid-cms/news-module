@@ -12,7 +12,7 @@ use Grapesc\GrapeFluid\NewsFeedModule\Model\ArticleModel;
  * @package Grapesc\GrapeFluid\NewsFeedModule\Control
  * @usage: {magicControl importantNews, ['uid', 'int limit']}
  */
-class ImportantNewsControl extends BaseMagicTemplateControl
+class NewsControl extends BaseMagicTemplateControl
 {
 
 	/** @var ArticleModel @inject */
@@ -24,12 +24,12 @@ class ImportantNewsControl extends BaseMagicTemplateControl
 	private $limit = 12;
 
 	/** @var string|null */
-	protected $defaultTemplateFilename = __DIR__ . '/important.latte';
+	protected $defaultTemplateFilename = __DIR__ . '/news.latte';
 
 
 	public function setParams(array $params = []): void
 	{
-		$this->limit = $this->setting->getVal("news.important.limit");
+		$this->limit = $this->setting->getVal("news.news.limit");
 
 		if (isset($params[1]) && is_int($params[1])) {
 			$this->limit = $params[1];
@@ -39,7 +39,7 @@ class ImportantNewsControl extends BaseMagicTemplateControl
 
 	public function render(): void
 	{
-		$this->template->articles = $this->articles->getImportantArticles($this->limit);
+		$this->template->articles = $this->articles->getPublicArticles($this->limit);
 		$this->template->render();
 	}
 

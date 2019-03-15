@@ -1,29 +1,34 @@
 parameters:
-    controls:
-        importantNews:
-            class: Grapesc\GrapeFluid\NewsFeedModule\Control\ImportantNewsControlFactory
-            desc: 'Slouží pro výpis novinek označených jako Důležité'
-            params:
-                limit: [int, 'Limit posledních důležitých novinek (Větší než 0)']
-    translator:
-        locales:
-            - %moduleDir%/NewsModule/config/Locale/cs.neon
+	controls:
+		importantNews:
+			class: Grapesc\GrapeFluid\NewsFeedModule\Control\ImportantNewsControlFactory
+			desc: 'Slouží pro seznamový výpis novinek označených jako Důležité'
+			params:
+				limit: [int, 'Počet zobrazených novinek (Větší než 0)']
+		news:
+			class: Grapesc\GrapeFluid\NewsFeedModule\Control\NewsControlFactory
+			desc: 'Slouží pro seznamový výpis novinek'
+			params:
+				limit: [int, 'Počet novinek na stránku (Větší než 1)']
+	translator:
+		locales:
+			- %moduleDir%/NewsModule/config/Locale/cs.neon
 
-    backend:
-        auth:
-            newsfeed: 'newsfeed'
-        menu:
-            Novinky:
-                order: 4
-                icon: 'newspaper-o'
-                auth: '%backend.auth.newsfeed%'
-                link: ':Admin:NewsFeed:default'
-                selected:
-                    - ':Admin:NewsFeed:.*'
+	backend:
+		auth:
+			newsfeed: 'newsfeed'
+		menu:
+			Novinky:
+				order: 4
+				icon: 'newspaper-o'
+				auth: '%backend.auth.newsfeed%'
+				link: ':Admin:NewsFeed:default'
+				selected:
+					- ':Admin:NewsFeed:.*'
 
 
 services:
-    - Grapesc\GrapeFluid\NewsFeedModule\Model\CategoryModel
-    - Grapesc\GrapeFluid\NewsFeedModule\Model\ArticleModel
-    - Grapesc\GrapeFluid\NewsFeedModule\CategoryForm
-    - Grapesc\GrapeFluid\NewsFeedModule\ArticleForm
+	- Grapesc\GrapeFluid\NewsFeedModule\Model\CategoryModel
+	- Grapesc\GrapeFluid\NewsFeedModule\Model\ArticleModel
+	- Grapesc\GrapeFluid\NewsFeedModule\CategoryForm
+	- Grapesc\GrapeFluid\NewsFeedModule\ArticleForm
