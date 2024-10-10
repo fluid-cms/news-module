@@ -15,7 +15,7 @@ class ArticleGrid extends FluidGrid
 	public $categoryModel;
 
 
-	protected function build()
+	protected function build(): void
 	{
 		$this->skipColumns(["content", "public", "important"]);
 		$this->setDefaultOrderBy("date", Column::DESC);
