@@ -10,7 +10,7 @@ use Nette\Database\Table\ActiveRow;
 class CategoryGrid extends FluidGrid
 {
 
-	protected function build()
+	protected function build(): void
 	{
 		$this->skipColumns(["name", "icon"]);
 		$this->addColumn("name", "Kategorie")->setSortable();

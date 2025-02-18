@@ -35,7 +35,7 @@ class CategoryForm extends FluidForm
 
 	protected function submit(Control $control, Form $form)
 	{
-		$values = $form->getValues(true);
+		$values = $form->getValues('array');
 		$presenter = $form->getPresenter();
 		if ($values['id'] != "") {
 			$this->model->update($values, $values['id']);
