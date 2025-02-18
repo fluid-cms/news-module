@@ -42,7 +42,7 @@ class CategoryForm extends FluidForm
 			$presenter->flashMessage("Kategorie upravena", "success");
 		} else {
 			unset($values['id']);
-			$this->createdId = $this->model->insert($values);
+			$this->createdId = $this->model->insert($values)->id;
 			$presenter->flashMessage("Kategorie přidána", "success");
 		}
 

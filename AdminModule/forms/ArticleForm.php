@@ -60,7 +60,7 @@ class ArticleForm extends FluidForm
 
 		if ($values['id'] == "") {
 			unset($values['id']);
-			$this->createdId = $this->model->insert($values);
+			$this->createdId = $this->model->insert($values)->id;
 			$presenter->flashMessage("Novinka přidána", "success");
 		} else {
 			$this->model->update($values, $values['id']);
