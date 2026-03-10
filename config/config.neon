@@ -41,7 +41,7 @@ services:
     - Grapesc\GrapeFluid\NewsFeedModule\CategoryForm
     - Grapesc\GrapeFluid\NewsFeedModule\ArticleForm
 
-assets:
+fluidAssets:
     salvattore:
 #        Pokud chcete mit co nejmensi page-load, pridejte toto do sveho PROJEKTOVEHO config.neon-u (popr. upravte limity dle sveho)
 #        limit:
